@@ -1,1 +1,21 @@
-<p>node works!</p>
+<div class="text-center">
+  <button class="btn circle">
+    {{ node.data.label }}
+  </button>
+</div>
+<ng-container *ngIf="level < maxLevel">
+  <div
+    *ngIf="node.children?.length"
+    class="d-flex flex-wrap justify-content-center"
+  >
+    <app-node
+      *ngFor="let child of node.children"
+      [ngStyle]="{
+        width: getChildWidth()
+      }"
+      [node]="child"
+      [maxLevel]="maxLevel"
+      [level]="level + 1"
+    ></app-node>
+  </div>
+</ng-container>

@@ -1,1 +1,2 @@
-<p>location works!</p>
+<h1>Location Tree</h1>
+<app-tree *ngIf="model.data$ | async as data" [data]="data" [maxLevel]="3"></app-tree>

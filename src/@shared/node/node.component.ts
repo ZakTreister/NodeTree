@@ -1,15 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, Input, OnInit } from '@angular/core';
+import { Node } from 'src/@core/model';
 
 @Component({
   selector: 'app-node',
   templateUrl: './node.component.html',
-  styleUrls: ['./node.component.scss']
+  styleUrls: ['./node.component.scss'],
+  standalone: true,
+  imports: [CommonModule],
 })
-export class NodeComponent implements OnInit {
+export class NodeComponent {
+  @Input() public node: Node;
+  @Input() public maxLevel: number;
+  @Input() public level: number;
 
-  constructor() { }
-
-  ngOnInit(): void {
+  public getChildWidth(): string {
+    if (!this.node.children?.length) {
+      return 'auto';
+    }
+    return `${100 / this.node.children.length}%`;
   }
-
 }
